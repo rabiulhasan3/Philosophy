@@ -1,6 +1,5 @@
 <?php
 // Version For Cache
-define( "VERSION", wp_get_theme()->get( "Version" ) );
 if(site_url() == "http://localhost/wordpress/philosophy"){
     define("VERSION",time());
 }else{
@@ -14,6 +13,9 @@ function philosophy_setup_theme(){
     add_theme_support( 'post-formats', array( 'aside', 'gallery', 'audio', 'video', 'standard', 'quote' ) );
     add_theme_support( 'html5', array( 'comment-form', 'search-form' ) );
     add_editor_style( 'assets/css/editor-style.css' );
+    // Register Nav menu
+    register_nav_menu("top_menu",__("Top Menu","philosopy"));
+    
 }
 add_action("after_setup_theme","philosophy_setup_theme");
 
@@ -32,3 +34,4 @@ function philosophy_assets_management(){
     wp_enqueue_script("main.js",get_theme_file_uri("/assets/js/main.js"),array("jquery"),VERSION,true);
 }
 add_action( "wp_enqueue_scripts","philosophy_assets_management");
+
